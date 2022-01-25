@@ -3,6 +3,7 @@ import 'package:day34/pages/explore.dart';
 import 'package:day34/pages/notification.dart';
 import 'package:day34/pages/profile.dart';
 import 'package:day34/pages/search.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flashy_tab_bar/flashy_tab_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ void main() {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({ Key? key }) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -24,12 +25,7 @@ class _HomePageState extends State<HomePage> {
   late PageController _pageController;
   int _selectedPage = 0;
 
-  List<Widget> pages = [
-    ExplorePage(),
-    SearchPage(),
-    CartPage(),
-    ProfilePage()
-  ];
+  List<Widget> pages = [ExplorePage(), SearchPage(), CartPage(), ProfilePage()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,11 +46,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        onPageChanged: (index) => setState(() { _selectedPage = index; }),
+        onPageChanged: (index) => setState(() {
+          _selectedPage = index;
+        }),
         controller: _pageController,
-        children: [
-          ...pages
-        ],
+        children: [...pages],
       ),
       bottomNavigationBar: FlashyTabBar(
         selectedIndex: _selectedPage,
@@ -74,7 +70,10 @@ class _HomePageState extends State<HomePage> {
             title: Text('Cart'),
           ),
           FlashyTabBarItem(
-            icon: Icon(Icons.account_circle_outlined, size: 23,),
+            icon: Icon(
+              Icons.account_circle_outlined,
+              size: 23,
+            ),
             title: Text('Profile'),
           ),
         ],
